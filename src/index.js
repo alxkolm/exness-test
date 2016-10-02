@@ -1,15 +1,41 @@
+require("babel-polyfill");
 import React from 'react';
 import { render } from 'react-dom';
 import CartList from './components/CartList';
+import ProductsList from './components/ProductsList';
+import { createStore } from 'redux';
+import reducer from './reducer.js';
+import {loadProducts, addToCart} from './actions';
+import CartListContainer from './components/CartListContainer';
+import ProductsListContainer from './components/ProductsListContainer';
+import { Provider } from 'react-redux';
+import Api from './api';
 
-let items = [
-    {id: 1, name: 'item 1'},
-    {id: 2, name: 'item 2'},
-    {id: 3, name: 'item 3'},
 
-];
+const store = createStore(reducer);
+
+// Get produts
+Api.getProducts().then(products => {
+    store.dispatch(loadProducts(products));
+});
+
+/**
+ * Persist cart in localStorage
+ */
+store.subscribe(() => {
+    localStorage.setItem('cart', JSON.stringify(store.getState().cart));
+});
+
+
+
 
 render(
-    <CartList items={items} />,
+    <Provider store={store}>
+        <div>
+            <CartListContainer/>
+            <ProductsListContainer/>
+        </div>
+    </Provider>
+    ,
     document.getElementById('app')
 );
