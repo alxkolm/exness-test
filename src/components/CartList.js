@@ -42,8 +42,8 @@ class CartList extends React.Component {
      * Submit cart to backend
      * @param cart
      */
-    submit(cart) {
-        api.submitCart(cart)
+    submit() {
+        api.submitCart(this.props.cart)
             .then(() => {
                 this.props.onSubmitSuccess();
             })
