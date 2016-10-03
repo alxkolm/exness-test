@@ -8,6 +8,15 @@ try {
     prevCart = {};
 }
 
+/**
+ * @typedef {Object} ReduxAppState
+ * @property {Object} cart Object where keys are product id and values is amount
+ * @property {Object} cartSort
+ * @property {string} cartSort.by Key for sorting
+ * @property {string} cartSort.order Order of sorting. Allowed 'asc', 'desc'
+ * @property {array} products Array of products
+ * @property {string} cartStatus Allowed 'new', 'submitting', 'fail', 'success'
+ */
 let initState = {
     cart: prevCart,
     cartSort: {by: 'title', order: 'asc'},
