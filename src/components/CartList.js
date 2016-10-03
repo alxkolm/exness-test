@@ -53,33 +53,35 @@ class CartList extends React.Component {
     }
 
     render() {
-        return <div>
-            <table className="table">
-                <thead>
-                <tr>
-                    <th onClick={() => this.props.onSort('title')}>Title</th>
-                    <th onClick={() => this.props.onSort('price')}>Price</th>
-                    <th onClick={() => this.props.onSort('amount')}>Amount</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    this.getItems().map(item =>
-                        <CartItem key={item.id} {...item} onRemove={() => this.props.onProductDelete(item.id)}/>
-                    )
-                }
-                </tbody>
-            </table>
+        return <div class="row">
+            <div class="col-xs-12">
+                <table className="table">
+                    <thead>
+                    <tr>
+                        <th onClick={() => this.props.onSort('title')}>Title</th>
+                        <th onClick={() => this.props.onSort('price')}>Price</th>
+                        <th onClick={() => this.props.onSort('amount')}>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        this.getItems().map(item =>
+                            <CartItem key={item.id} {...item} onRemove={() => this.props.onProductDelete(item.id)}/>
+                        )
+                    }
+                    </tbody>
+                </table>
 
-            <button className="btn btn-primary" onClick={() => this.submit()}>Submit</button>
+                <button className="btn btn-primary" onClick={() => this.submit()}>Submit</button>
 
-            <p className={classnames({'bg-danger': true, show: this.props.submitStatus === 'fail'})} style={{display: 'none', padding: '5px'}}>
-                Cart submitting is fail. Try again, it's randomly.
-            </p>
-            <p className={classnames({'bg-success': true, show: this.props.submitStatus === 'success'})} style={{display: 'none', padding: '5px'}}>
-                Cart submitted successfully. Try again, it's randomly.
-            </p>
+                <p className={classnames({'bg-danger': true, show: this.props.submitStatus === 'fail'})} style={{display: 'none', padding: '5px'}}>
+                    Cart submitting is fail. Try again, it's randomly.
+                </p>
+                <p className={classnames({'bg-success': true, show: this.props.submitStatus === 'success'})} style={{display: 'none', padding: '5px'}}>
+                    Cart submitted successfully. Try again, it's randomly.
+                </p>
+            </div>
         </div>;
     }
 }

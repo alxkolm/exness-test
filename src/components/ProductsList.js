@@ -6,10 +6,14 @@ class ProductsList extends React.Component {
         console.log('click');
     }
     render(){
-        return <div>
-            <p>Pick product to cart</p>
-            {this.props.products.map(item => <ProductItem key={item.id} {...item} onClick={() => {this.props.onProductClick(item.id)}} />)}
-            </div>;
+        return <div class="row">
+            <div class="col-xs-12">
+                <p>Pick product to cart</p>
+                {this.props.products.map(item => <ProductItem key={item.id} {...item} onClick={() => {
+                    this.props.onProductClick(item.id)
+                }}/>)}
+            </div>
+        </div>;
     }
 }
 
